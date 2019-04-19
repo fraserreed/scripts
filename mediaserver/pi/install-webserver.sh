@@ -24,3 +24,6 @@ apt-get install mysql-server
 
 # install php
 apt-get -y install php7.0 php7.0-mysql php7.0-mcrypt php7.0-mbstring php7.0-fpm php7.0-cli
+
+# install video support
+apt-get -y install ffmpeg x264
