@@ -21,10 +21,10 @@ apt-get upgrade
 apt-get -y install apt-transport-https
 
 # add the pi source for plexmediaserver
-wget -O - https://dev2day.de/pms/dev2day-pms.gpg.key | sudo apt-key add -
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 
-PLEX_SOURCE="deb https://dev2day.de/pms/ jessie main"
-PLEX_TARGET="/etc/apt/sources.list.d/pms.list"
+PLEX_SOURCE="deb https://downloads.plex.tv/repo/deb public main"
+PLEX_TARGET="/etc/apt/sources.list.d/plexmediaserver.list"
 
 if [ ! -f $PLEX_TARGET ]; then
     touch $PLEX_TARGET
@@ -34,7 +34,7 @@ grep -q -F "$PLEX_SOURCE" $PLEX_TARGET | echo "$PLEX_SOURCE" | sudo tee $PLEX_TA
 
 # install plexmediaserver
 apt-get update
-apt-get -y install -t jessie plexmediaserver
+apt-get -y install plexmediaserver
 
 # update the user running plex
 sed -i -e 's/PLEX_MEDIA_SERVER_USER=plex/PLEX_MEDIA_SERVER_USER=pi/g' /etc/default/plexmediaserver.prev
